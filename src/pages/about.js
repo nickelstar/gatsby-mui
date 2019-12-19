@@ -1,0 +1,45 @@
+import React from 'react';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import MuiLink from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
+
+import ProTip from '../components/ProTip';
+import Link from '../components/Link';
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <MuiLink color="inherit" href="https://material-ui.com/">
+        Your Website
+      </MuiLink>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+export default function About() {
+  return (
+    <Container maxWidth="sm">
+      <Box my={5}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Gatsby v4-beta example
+        </Typography>
+        <Link to="/">Go to the main page</Link>
+        <Link to="/dialog" color="secondary">
+          Go to the dialog page
+        </Link>
+        <Box>
+          <Button variant="contained">Default</Button>
+        </Box>
+
+        <ProTip />
+        <Copyright />
+
+      </Box>
+    </Container>
+  );
+}
