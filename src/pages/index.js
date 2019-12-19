@@ -1,40 +1,22 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import MuiLink from '@material-ui/core/Link';
-import ProTip from '../components/ProTip';
-import Link from '../components/Link';
+import React from 'react'
+import { Link } from 'gatsby'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MuiLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Layout from '../components/layout'
 
-export default function Index() {
-  return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Gatsby v4-beta example
-        </Typography>
-        <Link to="/about" color="secondary">
-          Go to the about page
-        </Link>
-        <Link to="/dialog" color="secondary">
-          Go to the dialog page
-        </Link>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
-  );
-}
+import Amplify from 'aws-amplify'
+import config from '../aws-exports'
+Amplify.configure(config)
+
+const IndexPage = () => (
+    <Layout>
+        <h1>Hi people</h1>
+        <p>Welcome to your new Gatsby site with multi-user authentication powered by <a href="https://amplify.aws">AWS Amplify</a></p>
+        <p>Create a new account: <Link to="/app/signup">Sign Up</Link></p>
+        <Link to="/">Home</Link><br />
+        <Link to="/app/login">Sign In</Link><br />
+        <Link to="/app/profile">Your profile</Link><br />
+        <Link to="/app/dialog">Dialog</Link>
+    </Layout>
+)
+
+export default IndexPage
