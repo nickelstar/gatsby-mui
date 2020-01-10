@@ -1,6 +1,26 @@
 module.exports = {
     plugins: [
         'gatsby-plugin-top-layout',
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+        // If you want to use styled components you should add the plugin here.
+        // 'gatsby-plugin-styled-components',
+        'gatsby-plugin-react-helmet',
+        // this (optional) plugin enables Progressive Web App + Offline functionality
+        // To learn more, visit: https://gatsby.dev/offline
+        // `gatsby-plugin-offline`,
+        {
+            resolve: 'gatsby-plugin-eslint',
+            options: {
+                test: /\.js$|\.jsx$/,
+                exclude: /(node_modules|.cache|public|plugins)/,
+                stages: ['develop'],
+                options: {
+                    emitWarning: true,
+                    failOnError: false
+                }
+            }
+        },
         {
             resolve: 'gatsby-plugin-material-ui',
             // If you want to use styled components you should change the injection order.
@@ -10,9 +30,6 @@ module.exports = {
                 // },
             },
         },
-        // If you want to use styled components you should add the plugin here.
-        // 'gatsby-plugin-styled-components',
-        'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -20,8 +37,6 @@ module.exports = {
                 path: `${__dirname}/src/images`,
             },
         },
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
@@ -34,9 +49,6 @@ module.exports = {
                 icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
             },
         },
-        // this (optional) plugin enables Progressive Web App + Offline functionality
-        // To learn more, visit: https://gatsby.dev/offline
-        // `gatsby-plugin-offline`,
 
     ],
     siteMetadata: {
