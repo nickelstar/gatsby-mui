@@ -1,0 +1,156 @@
+type Talk {
+  id: ID!
+  name: String!
+  description: String!
+  speakerName: String!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelTalkConnection {
+  items: [Talk]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelTalkFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  description: ModelStringInput
+  speakerName: ModelStringInput
+  and: [ModelTalkFilterInput]
+  or: [ModelTalkFilterInput]
+  not: ModelTalkFilterInput
+}
+
+type Query {
+  getTalk(id: ID!): Talk
+  listTalks(filter: ModelTalkFilterInput, limit: Int, nextToken: String): ModelTalkConnection
+}
+
+input CreateTalkInput {
+  id: ID
+  name: String!
+  description: String!
+  speakerName: String!
+}
+
+input UpdateTalkInput {
+  id: ID!
+  name: String
+  description: String
+  speakerName: String
+}
+
+input DeleteTalkInput {
+  id: ID
+}
+
+type Mutation {
+  createTalk(input: CreateTalkInput!, condition: ModelTalkConditionInput): Talk
+  updateTalk(input: UpdateTalkInput!, condition: ModelTalkConditionInput): Talk
+  deleteTalk(input: DeleteTalkInput!, condition: ModelTalkConditionInput): Talk
+}
+
+input ModelTalkConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  speakerName: ModelStringInput
+  and: [ModelTalkConditionInput]
+  or: [ModelTalkConditionInput]
+  not: ModelTalkConditionInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Subscription {
+  onCreateTalk: Talk @aws_subscribe(mutations: ["createTalk"])
+  onUpdateTalk: Talk @aws_subscribe(mutations: ["updateTalk"])
+  onDeleteTalk: Talk @aws_subscribe(mutations: ["deleteTalk"])
+}

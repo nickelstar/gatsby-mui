@@ -68,55 +68,34 @@
 				}
 			}
 		},
-		"authcognito704b3e59": {
+		"authmyawsproject71712a77": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/my-aws-project-dev-20191219212904-deployment/amplify-cfn-templates/auth/cognito704b3e59-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/my-aws-project-dev-20200110215846-deployment/amplify-cfn-templates/auth/myawsproject71712a77-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "cognito704b3e59_identitypool_704b3e59",
+					"identityPoolName": "myawsproject71712a77_identitypool_71712a77",
 					"allowUnauthenticatedIdentities": false,
-					"thirdPartyAuth": false,
-					"lambdaLogPolicy": "cognito704b3e59_lambda_log_policy",
-					"openIdLambdaRoleName": "cognito704b3e59_openid_lambda_role",
-					"openIdRolePolicy": "cognito704b3e59_openid_pass_role_policy",
-					"openIdLambdaIAMPolicy": "cognito704b3e59_openid_lambda_iam_policy",
-					"openIdLogPolicy": "cognito704b3e59_openid_lambda_log_policy",
-					"userPoolName": "cognito704b3e59_userpool_704b3e59",
+					"resourceNameTruncated": "myawsp71712a77",
+					"userPoolName": "myawsproject71712a77_userpool_71712a77",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
-					"roleName": "cognito704b3e59_sns-role",
-					"roleExternalId": "cognito704b3e59_role_external_id",
-					"policyName": "cognito704b3e59-sns-policy",
 					"smsAuthenticationMessage": "Your authentication code is {####}",
 					"smsVerificationMessage": "Your verification code is {####}",
 					"emailVerificationSubject": "Your verification code",
 					"emailVerificationMessage": "Your verification code is {####}",
 					"defaultPasswordPolicy": false,
 					"passwordPolicyMinLength": 8,
-					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
+					"passwordPolicyCharacters": "",
 					"requiredAttributes": "email",
-					"userpoolClientName": "cognito704b3e59_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
+					"userpoolClientWriteAttributes": "email",
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "cognito704b3e59_totp_lambda_role",
-					"mfaLambdaLogPolicy": "cognito704b3e59_totp_lambda_log_policy",
-					"mfaPassRolePolicy": "cognito704b3e59_totp_pass_role_policy",
-					"mfaLambdaIAMPolicy": "cognito704b3e59_totp_lambda_iam_policy",
-					"userpoolClientLambdaRole": "cognito704b3e59_userpoolclient_lambda_role",
-					"userpoolClientLogPolicy": "cognito704b3e59_userpoolclient_lambda_log_policy",
-					"userpoolClientLambdaPolicy": "cognito704b3e59_userpoolclient_lambda_iam_policy",
+					"userpoolClientLambdaRole": "myawsp71712a77_userpoolclient_lambda_role",
 					"userpoolClientSetAttributes": false,
-					"useDefault": "default",
-					"resourceName": "cognito704b3e59",
+					"resourceName": "myawsproject71712a77",
 					"authSelections": "identityPoolAndUserPool",
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
 					"authRoleArn": {
 						"Fn::GetAtt": [
 							"AuthRole",
@@ -129,6 +108,30 @@
 							"Arn"
 						]
 					},
+					"useDefault": "default",
+					"usernameAttributes": "email",
+					"dependsOn": "",
+					"env": "dev"
+				}
+			}
+		},
+		"apigatsbyMuiAuth": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/my-aws-project-dev-20200110215846-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"Parameters": {
+					"CreateAPIKey": 0,
+					"AppSyncApiName": "gatsbyMuiAuth",
+					"DynamoDBBillingMode": "PAY_PER_REQUEST",
+					"DynamoDBEnableServerSideEncryption": "false",
+					"AuthCognitoUserPoolId": {
+						"Fn::GetAtt": [
+							"authmyawsproject71712a77",
+							"Outputs.UserPoolId"
+						]
+					},
+					"S3DeploymentBucket": "my-aws-project-dev-20200110215846-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/1c276b0e58b126dcec40bc0a4884807bc24cd7f4",
 					"env": "dev"
 				}
 			}
@@ -137,7 +140,7 @@
 			"DependsOn": [
 				"AuthRole",
 				"UnauthRole",
-				"authcognito704b3e59"
+				"authmyawsproject71712a77"
 			],
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
@@ -167,9 +170,8 @@
 								"        promises.push(iam.updateAssumeRolePolicy(unauthParams).promise());",
 								"        Promise.all(promises)",
 								"         .then((res) => {",
-								"            console.log(\"delete\" + res);",
-								"            console.log(\"response data\" + JSON.stringify(res));",
-								"            response.send(event, context, response.SUCCESS, res);",
+								"            console.log(\"delete response data\" + JSON.stringify(res));",
+								"            response.send(event, context, response.SUCCESS, {});",
 								"         });",
 								"    }",
 								"    if (event.RequestType == 'Update' || event.RequestType == 'Create') {",
@@ -197,7 +199,7 @@
 					}
 				},
 				"Handler": "index.handler",
-				"Runtime": "nodejs8.10",
+				"Runtime": "nodejs10.x",
 				"Timeout": "300",
 				"Role": {
 					"Fn::GetAtt": [
@@ -221,7 +223,7 @@
 				},
 				"idpId": {
 					"Fn::GetAtt": [
-						"authcognito704b3e59",
+						"authmyawsproject71712a77",
 						"Outputs.IdentityPoolId"
 					]
 				},

@@ -1,0 +1,14 @@
+{
+    "CreateAPIKey": 0,
+    "AppSyncApiName": "gatsbyMuiAuth",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authmyawsproject71712a77",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "my-aws-project-dev-20200110215846-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/1c276b0e58b126dcec40bc0a4884807bc24cd7f4"
+}

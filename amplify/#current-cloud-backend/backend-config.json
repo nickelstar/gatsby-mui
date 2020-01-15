@@ -1,8 +1,26 @@
 {
 	"auth": {
-		"cognito704b3e59": {
+		"myawsproject71712a77": {
 			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"gatsbyMuiAuth": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authmyawsproject71712a77"
+						}
+					}
+				}
+			}
 		}
 	}
 }

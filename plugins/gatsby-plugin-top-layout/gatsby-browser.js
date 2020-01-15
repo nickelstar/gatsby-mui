@@ -4,9 +4,14 @@ import TopLayout from './TopLayout';
 
 import Auth from '@aws-amplify/auth'
 import { setUser } from '../../src/utils/auth'
+import GlobalContextProvider from "../../src/context/GlobalContextProvider"
 
 export const wrapRootElement = ({ element }) => {
-    return <TopLayout>{element}</TopLayout>;
+    return <TopLayout>
+        <GlobalContextProvider>
+            {element}
+        </GlobalContextProvider>
+    </TopLayout>;
 };
 
 export const onRouteUpdate = (state, page, pages) => {

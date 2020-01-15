@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "gatsbyMuiAuth",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authmyawsproject71712a77",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

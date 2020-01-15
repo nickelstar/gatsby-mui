@@ -7,6 +7,7 @@ const Home = () => <div>
     <Link to="/">Home</Link><br />
     <Link to="/app/profile">View profile</Link><br />
     <Link to="/app/dialog">View dialog</Link><br />
+    <Link to="/app/talkers">View talkers</Link><br />
     <p>Now go build something great and deploy it using the <a href="https://console.amplify.aws">AWS Amplify Console</a></p>
 </div>
 

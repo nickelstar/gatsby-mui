@@ -1,18 +1,19 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "my-aws-project-dev-20191219212904-authRole",
-            "UnauthRoleArn": "arn:aws:iam::276101116796:role/my-aws-project-dev-20191219212904-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::276101116796:role/my-aws-project-dev-20191219212904-authRole",
+            "AuthRoleName": "my-aws-project-dev-20200110215846-authRole",
+            "UnauthRoleArn": "arn:aws:iam::276101116796:role/my-aws-project-dev-20200110215846-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::276101116796:role/my-aws-project-dev-20200110215846-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "my-aws-project-dev-20191219212904-deployment",
-            "UnauthRoleName": "my-aws-project-dev-20191219212904-unauthRole",
-            "StackName": "my-aws-project-dev-20191219212904",
-            "StackId": "arn:aws:cloudformation:us-east-1:276101116796:stack/my-aws-project-dev-20191219212904/94f151a0-22a6-11ea-acae-12713880e578"
+            "DeploymentBucketName": "my-aws-project-dev-20200110215846-deployment",
+            "UnauthRoleName": "my-aws-project-dev-20200110215846-unauthRole",
+            "StackName": "my-aws-project-dev-20200110215846",
+            "StackId": "arn:aws:cloudformation:us-east-1:276101116796:stack/my-aws-project-dev-20200110215846/6059dc00-33f4-11ea-b42f-0e65f7e0e97d",
+            "AmplifyAppId": "dqtkenl4ae814"
         },
         "categories": {
             "auth": {
-                "cognito704b3e59": {}
+                "myawsproject71712a77": {}
             }
         }
     }
