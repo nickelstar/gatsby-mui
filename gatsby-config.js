@@ -1,4 +1,9 @@
 module.exports = {
+    siteMetadata: {
+        title: 'My Site',
+        description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+        author: `Nick Gates`,
+    },
     plugins: [
         'gatsby-plugin-top-layout',
         `gatsby-transformer-sharp`,
@@ -51,7 +56,5 @@ module.exports = {
         },
 
     ],
-    siteMetadata: {
-        title: 'My page',
-    },
+
 };

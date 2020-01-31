@@ -7,11 +7,14 @@ import Home from "../components/Home"
 import Login from "../components/Login"
 import SignUp from "../components/SignUp"
 import Talkers from "../components/Talkers"
+import SEO from '../components/seo'
 
 import Dialog from "../components/Dialog"
 
 const App = () => (
     <Layout>
+        <SEO title="App Page"/>
+
         <Router>
             <PrivateRoute path="/app/home" component={Home} />
             <PrivateRoute path="/app/profile" component={Details} />
