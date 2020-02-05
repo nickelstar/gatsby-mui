@@ -50,7 +50,9 @@ const Header = ({ siteTitle }) => {
                     Toggle Theme
                 </button>
 
-                {
+                <LoginAndOut />
+
+                {/* {
                     isLoggedIn() && (
                         <p
                             onClick={
@@ -59,10 +61,27 @@ const Header = ({ siteTitle }) => {
                             style={styles.link}
                         >Sign Out</p>
                     )
-                }
+                } */}
             </div>
         </div>
     )
+}
+
+const LoginAndOut = () => {
+    if (isLoggedIn()) {
+
+        return <p
+            onClick={
+                () => Auth.signOut().then(logout(() =>
+                    navigate('/app/login')))
+                    .catch(err => console.log('error:', err))
+            }
+            style={styles.link}
+        >Sign Out</p>
+    }
+
+    return <Link to="/app/login" style={styles.link}>Sign In</Link>;
+
 }
 
 const styles = {
@@ -73,7 +92,8 @@ const styles = {
     link: {
         cursor: 'pointer',
         color: 'white',
-        textDecoration: 'underline'
+        textDecoration: 'underline',
+        padding: '5px'
     }
 }
 

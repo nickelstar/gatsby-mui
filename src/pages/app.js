@@ -13,7 +13,7 @@ import Dialog from "../components/Dialog"
 
 const App = () => (
     <Layout>
-        <SEO title="App Page"/>
+        <SEO title="App Page" />
 
         <Router>
             <PrivateRoute path="/app/home" component={Home} />
