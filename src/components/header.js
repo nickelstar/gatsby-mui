@@ -51,17 +51,6 @@ const Header = ({ siteTitle }) => {
                 </button>
 
                 <LoginAndOut />
-
-                {/* {
-                    isLoggedIn() && (
-                        <p
-                            onClick={
-                                () => Auth.signOut().then(logout(() => navigate('/app/login'))).catch(err => console.log('eror:', err))
-                            }
-                            style={styles.link}
-                        >Sign Out</p>
-                    )
-                } */}
             </div>
         </div>
     )
@@ -69,7 +58,6 @@ const Header = ({ siteTitle }) => {
 
 const LoginAndOut = () => {
     if (isLoggedIn()) {
-
         return <p
             onClick={
                 () => Auth.signOut().then(logout(() =>
