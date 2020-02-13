@@ -25,12 +25,15 @@ export const MainListItems = () => {
 
             <LoginAndOut />
 
-            <ListItem button>
+            <DialogDemo />
+
+            {/* <ListItem button>
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
-            </ListItem>
+            </ListItem> */}
+
             <ListItem button>
                 <ListItemIcon>
                     <ShoppingCartIcon />
@@ -113,4 +116,18 @@ const LoginAndOut = () => {
         </Link>
     </ListItem>)
 
+}
+
+const DialogDemo = () => {
+    return (
+        <ListItem button >
+            <ListItemIcon>
+                <DashboardIcon />
+            </ListItemIcon>
+
+            <Link to="/app/dialogDemo" color="inherit">
+                <ListItemText primary="Dialog" />
+            </Link>
+        </ListItem>
+    )
 }
