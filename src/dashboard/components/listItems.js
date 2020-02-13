@@ -11,10 +11,6 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-// import Link from '@material-ui/core/Link';
-
-// import MuiLink from '@material-ui/core/Link';
-// import { Link as GatsbyLink } from 'gatsby';
 
 import { navigate } from '@reach/router'
 import { Auth } from 'aws-amplify'
@@ -23,7 +19,6 @@ import Link from './Link';
 
 import { logout, isLoggedIn } from "../../utils/auth"
 
-// export const mainListItems = {
 export const MainListItems = () => {
     return (
         <div>
@@ -91,8 +86,6 @@ export const SecondaryListItems = () => {
         </div >
     )
 }
-
-// const preventDefault = event => event.preventDefault();
 
 const LoginAndOut = () => {
     if (isLoggedIn()) {
