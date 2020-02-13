@@ -4,6 +4,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import LockIcon from '@material-ui/icons/Lock';
+import ChatIcon from '@material-ui/icons/Chat';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -24,6 +25,8 @@ export const MainListItems = () => {
         <div>
 
             <LoginAndOut />
+
+            <Dashboard />
 
             <DialogDemo />
 
@@ -92,42 +95,61 @@ export const SecondaryListItems = () => {
 
 const LoginAndOut = () => {
     if (isLoggedIn()) {
-        return (<ListItem button>
-            <ListItemIcon>
-                <LockIcon />
-            </ListItemIcon>
+        return (
             <Link to="/app/login" color="inherit" onClick={
                 () => Auth.signOut().then(logout(() =>
                     navigate('/app/login')))
                     .catch(err => console.log('error:', err))
             }>
-                <ListItemText primary="Sign Out" />
+                <ListItem button>
+                    <ListItemIcon>
+                        <LockIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Sign Out" />
+                </ListItem>
             </Link>
-        </ListItem>)
+        )
     }
 
-    return (<ListItem button >
-        <ListItemIcon>
-            <LockOpenIcon />
-        </ListItemIcon>
-
+    return (
         <Link to="/app/login" color="inherit">
-            <ListItemText primary="Log In" />
-        </Link>
-    </ListItem>)
+            <ListItem button >
+                <ListItemIcon>
+                    <LockOpenIcon />
+                </ListItemIcon>
 
+                <ListItemText primary="Log In" />
+            </ListItem>
+        </Link>
+    )
+
+}
+
+
+const Dashboard = () => {
+    return (
+        <Link to="/app/home" color="inherit">
+            <ListItem button >
+                <ListItemIcon>
+                    <ChatIcon />
+                </ListItemIcon>
+
+                <ListItemText primary="Dashboard" />
+            </ListItem>
+        </Link>
+    )
 }
 
 const DialogDemo = () => {
     return (
-        <ListItem button >
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
+        <Link to="/app/dialogDemo" color="inherit">
+            <ListItem button >
+                <ListItemIcon>
+                    <DashboardIcon />
+                </ListItemIcon>
 
-            <Link to="/app/dialogDemo" color="inherit">
                 <ListItemText primary="Dialog" />
-            </Link>
-        </ListItem>
+            </ListItem>
+        </Link>
     )
 }

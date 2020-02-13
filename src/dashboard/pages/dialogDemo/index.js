@@ -2,7 +2,7 @@ import React from 'react';
 
 import Dialog from '../../components/Dialog'
 
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from "@material-ui/styles";
 import Layout from '../../components/Layout'

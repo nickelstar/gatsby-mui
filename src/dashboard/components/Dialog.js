@@ -13,8 +13,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
-import { Container, Box } from '@material-ui/core';
-import Link from './Link';
+import { Container } from '@material-ui/core';
+// import Link from './Link';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
