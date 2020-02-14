@@ -10,5 +10,5 @@
         ]
     },
     "S3DeploymentBucket": "my-aws-project-dev-20200110215846-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/1c276b0e58b126dcec40bc0a4884807bc24cd7f4"
+    "S3DeploymentRootKey": "amplify-appsync-files/4af143415bbc4fd5199890617826ab4fe6447a6f"
 }

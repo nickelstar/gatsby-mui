@@ -8,8 +8,8 @@ const MyResponsiveBarChart = ({ data /* see data tab */ }) => {
         <div className="chart">
             <ResponsiveBar
                 data={data}
-                keys={['hot dog', 'burger', 'sandwich', 'kebab', 'fries', 'donut']}
-                indexBy="country"
+                keys={['hotdogSales', 'burgerSales', 'sandwichSales', 'kebabSales', 'friesSales', 'donutSales']}
+                indexBy="countryCode"
                 margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
                 padding={0.3}
                 colors={{ scheme: 'nivo' }}
@@ -54,7 +54,7 @@ const MyResponsiveBarChart = ({ data /* see data tab */ }) => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'country',
+                    legend: 'countryCode',
                     legendPosition: 'middle',
                     legendOffset: 32
                 }}

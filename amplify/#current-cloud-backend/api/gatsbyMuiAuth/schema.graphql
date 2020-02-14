@@ -1,3 +1,14 @@
+type CountryFoodSales @model {
+    id: ID!
+    countryCode: String!
+    donutSales: Int!
+    kebabSales: Int!
+    sandwichSales: Int!
+    burgerSales: Int!
+    hotdogSales: Int!
+}
+
+
 type Talk @model {
   id: ID!
   name: String!

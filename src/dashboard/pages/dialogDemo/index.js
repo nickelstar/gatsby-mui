@@ -7,6 +7,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from "@material-ui/styles";
 import Layout from '../../components/Layout'
 import SEO from '../../../components/seo'
+import NewSalesForm from '../../components/newSalesForm'
+
+import EditableSalesTable from '../../components/editableSalesTable'
+
 
 const theme = createMuiTheme({
     palette: {
@@ -22,6 +26,8 @@ export default function DialogDemo() {
                 <CssBaseline />
                 <Layout>
                     <Dialog />
+                    <EditableSalesTable />
+                    <NewSalesForm />
                 </Layout>
             </ThemeProvider>
         </div>

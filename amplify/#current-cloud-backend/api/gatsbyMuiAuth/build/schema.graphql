@@ -1,3 +1,13 @@
+type CountryFoodSales {
+  id: ID!
+  countryCode: String!
+  donutSales: Int!
+  kebabSales: Int!
+  sandwichSales: Int!
+  burgerSales: Int!
+  hotdogSales: Int!
+}
+
 type Talk {
   id: ID!
   name: String!
@@ -10,8 +20,8 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelTalkConnection {
-  items: [Talk]
+type ModelCountryFoodSalesConnection {
+  items: [CountryFoodSales]
   nextToken: String
 }
 
@@ -88,6 +98,98 @@ input ModelSizeInput {
   between: [Int]
 }
 
+input ModelCountryFoodSalesFilterInput {
+  id: ModelIDInput
+  countryCode: ModelStringInput
+  donutSales: ModelIntInput
+  kebabSales: ModelIntInput
+  sandwichSales: ModelIntInput
+  burgerSales: ModelIntInput
+  hotdogSales: ModelIntInput
+  and: [ModelCountryFoodSalesFilterInput]
+  or: [ModelCountryFoodSalesFilterInput]
+  not: ModelCountryFoodSalesFilterInput
+}
+
+type Query {
+  getCountryFoodSales(id: ID!): CountryFoodSales
+  listCountryFoodSaless(filter: ModelCountryFoodSalesFilterInput, limit: Int, nextToken: String): ModelCountryFoodSalesConnection
+  getTalk(id: ID!): Talk
+  listTalks(filter: ModelTalkFilterInput, limit: Int, nextToken: String): ModelTalkConnection
+}
+
+input CreateCountryFoodSalesInput {
+  id: ID
+  countryCode: String!
+  donutSales: Int!
+  kebabSales: Int!
+  sandwichSales: Int!
+  burgerSales: Int!
+  hotdogSales: Int!
+}
+
+input UpdateCountryFoodSalesInput {
+  id: ID!
+  countryCode: String
+  donutSales: Int
+  kebabSales: Int
+  sandwichSales: Int
+  burgerSales: Int
+  hotdogSales: Int
+}
+
+input DeleteCountryFoodSalesInput {
+  id: ID
+}
+
+type Mutation {
+  createCountryFoodSales(input: CreateCountryFoodSalesInput!, condition: ModelCountryFoodSalesConditionInput): CountryFoodSales
+  updateCountryFoodSales(input: UpdateCountryFoodSalesInput!, condition: ModelCountryFoodSalesConditionInput): CountryFoodSales
+  deleteCountryFoodSales(input: DeleteCountryFoodSalesInput!, condition: ModelCountryFoodSalesConditionInput): CountryFoodSales
+  createTalk(input: CreateTalkInput!, condition: ModelTalkConditionInput): Talk
+  updateTalk(input: UpdateTalkInput!, condition: ModelTalkConditionInput): Talk
+  deleteTalk(input: DeleteTalkInput!, condition: ModelTalkConditionInput): Talk
+}
+
+input ModelCountryFoodSalesConditionInput {
+  countryCode: ModelStringInput
+  donutSales: ModelIntInput
+  kebabSales: ModelIntInput
+  sandwichSales: ModelIntInput
+  burgerSales: ModelIntInput
+  hotdogSales: ModelIntInput
+  and: [ModelCountryFoodSalesConditionInput]
+  or: [ModelCountryFoodSalesConditionInput]
+  not: ModelCountryFoodSalesConditionInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Subscription {
+  onCreateCountryFoodSales: CountryFoodSales @aws_subscribe(mutations: ["createCountryFoodSales"])
+  onUpdateCountryFoodSales: CountryFoodSales @aws_subscribe(mutations: ["updateCountryFoodSales"])
+  onDeleteCountryFoodSales: CountryFoodSales @aws_subscribe(mutations: ["deleteCountryFoodSales"])
+  onCreateTalk: Talk @aws_subscribe(mutations: ["createTalk"])
+  onUpdateTalk: Talk @aws_subscribe(mutations: ["updateTalk"])
+  onDeleteTalk: Talk @aws_subscribe(mutations: ["deleteTalk"])
+}
+
+type ModelTalkConnection {
+  items: [Talk]
+  nextToken: String
+}
+
 input ModelTalkFilterInput {
   id: ModelIDInput
   name: ModelStringInput
@@ -96,11 +198,6 @@ input ModelTalkFilterInput {
   and: [ModelTalkFilterInput]
   or: [ModelTalkFilterInput]
   not: ModelTalkFilterInput
-}
-
-type Query {
-  getTalk(id: ID!): Talk
-  listTalks(filter: ModelTalkFilterInput, limit: Int, nextToken: String): ModelTalkConnection
 }
 
 input CreateTalkInput {
@@ -121,12 +218,6 @@ input DeleteTalkInput {
   id: ID
 }
 
-type Mutation {
-  createTalk(input: CreateTalkInput!, condition: ModelTalkConditionInput): Talk
-  updateTalk(input: UpdateTalkInput!, condition: ModelTalkConditionInput): Talk
-  deleteTalk(input: DeleteTalkInput!, condition: ModelTalkConditionInput): Talk
-}
-
 input ModelTalkConditionInput {
   name: ModelStringInput
   description: ModelStringInput
@@ -134,23 +225,4 @@ input ModelTalkConditionInput {
   and: [ModelTalkConditionInput]
   or: [ModelTalkConditionInput]
   not: ModelTalkConditionInput
-}
-
-enum ModelAttributeTypes {
-  binary
-  binarySet
-  bool
-  list
-  map
-  number
-  numberSet
-  string
-  stringSet
-  _null
-}
-
-type Subscription {
-  onCreateTalk: Talk @aws_subscribe(mutations: ["createTalk"])
-  onUpdateTalk: Talk @aws_subscribe(mutations: ["updateTalk"])
-  onDeleteTalk: Talk @aws_subscribe(mutations: ["deleteTalk"])
 }

@@ -21,7 +21,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/my-aws-project-dev-20200110215846-deployment/amplify-cfn-templates/auth/myawsproject71712a77-cloudformation-template.yml",
 				"logicalId": "authmyawsproject71712a77"
 			},
-			"lastPushTimeStamp": "2020-01-29T21:16:38.436Z",
+			"lastPushTimeStamp": "2020-02-14T21:22:59.296Z",
 			"output": {
 				"AppClientSecret": "12tla8fgoaa8rseghn6uffsa1v82sm5v616421mmhhui9nj0qr1v",
 				"UserPoolId": "us-east-1_hxQ1cJ7rw",
@@ -55,8 +55,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/my-aws-project-dev-20200110215846-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apigatsbyMuiAuth"
 			},
-			"lastPushTimeStamp": "2020-01-29T21:16:39.552Z",
-			"lastPushDirHash": "0Sa3OgTcEU8fh2XVCrsQ/22tUvg="
+			"lastPushTimeStamp": "2020-02-14T21:23:00.405Z",
+			"lastPushDirHash": "LELPExj6MERm7YOsXZPLgJfoNq4="
 		}
 	}
 }

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
+import API, { graphqlOperation } from '@aws-amplify/api';
+
 import clsx from 'clsx';
 import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +18,93 @@ import { ThemeProvider } from "@material-ui/styles";
 
 import Layout from '../../components/Layout'
 import SEO from '../../../components/seo'
+
+import { listCountryFoodSaless } from '../../../graphql/queries';
+import { onCreateCountryFoodSales } from '../../../graphql/subscriptions';
+
+
+// Action Types
+const QUERY = 'QUERY';
+const SUBSCRIPTION = 'SUBSCRIPTION';
+
+const initialState = {
+    countryFoodSaless: [],
+};
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case QUERY:
+            return { ...state, countryFoodSaless: action.countryFoodSaless };
+        case SUBSCRIPTION:
+            return { ...state, countryFoodSaless: [...state.countryFoodSaless, action.countryFoodSales] }
+        default:
+            return state;
+    }
+};
+
+export default function Dashboard() {
+    const classes = useStyles();
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+    useEffect(() => {
+        async function getData() {
+            const salesData = await API.graphql(graphqlOperation(listCountryFoodSaless));
+            dispatch({ type: QUERY, countryFoodSaless: salesData.data.listCountryFoodSaless.items });
+        }
+        getData();
+
+        const subscription = API.graphql(graphqlOperation(onCreateCountryFoodSales)).subscribe({
+            next: (eventData) => {
+                const countryFoodSales = eventData.value.data.onCreateCountryFoodSales;
+                dispatch({ type: SUBSCRIPTION, talker: countryFoodSales });
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
+
+    const CountryFoodSalesBarChart = ({ countryFoodSaless }) => (
+        <Chart data={countryFoodSaless} />
+    )
+
+    return (
+        <div className={classes.root}>
+            <SEO title="Dashboard" />
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Layout>
+                    <Grid container spacing={3}>
+                        {/* Chart */}
+                        <Grid item xs={12} md={8} lg={9}>
+                            <Paper className={classes.paper}>
+                                <CountryFoodSalesBarChart countryFoodSaless={state.countryFoodSaless} />
+                            </Paper>
+                        </Grid>
+                        {/* Recent Deposits */}
+                        <Grid item xs={12} md={4} lg={3}>
+                            <Paper className={fixedHeightPaper}>
+                                <Deposits />
+                            </Paper>
+                        </Grid>
+                        {/* Recent Orders */}
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <Orders />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Box pt={4}>
+                        <Copyright />
+                    </Box>
+                </Layout>
+            </ThemeProvider>
+        </div>
+    );
+}
+
 
 const theme = createMuiTheme({
     palette: {
@@ -116,43 +205,3 @@ const useStyles = makeStyles(theme => ({
         height: 240,
     },
 }));
-
-export default function Dashboard() {
-    const classes = useStyles();
-
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-    return (
-        <div className={classes.root}>
-            <SEO title="Dashboard" />
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Layout>
-                    <Grid container spacing={3}>
-                        {/* Chart */}
-                        <Grid item xs={12} md={8} lg={9}>
-                            <Paper className={classes.paper}>
-                                <Chart data={chartData} />
-                            </Paper>
-                        </Grid>
-                        {/* Recent Deposits */}
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper className={fixedHeightPaper}>
-                                <Deposits />
-                            </Paper>
-                        </Grid>
-                        {/* Recent Orders */}
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <Orders />
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Box pt={4}>
-                        <Copyright />
-                    </Box>
-                </Layout>
-            </ThemeProvider>
-        </div>
-    );
-}
