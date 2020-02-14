@@ -131,7 +131,7 @@ const Dashboard = () => {
         <Link to="/app/home" color="inherit">
             <ListItem button >
                 <ListItemIcon>
-                    <ChatIcon />
+                    <DashboardIcon />
                 </ListItemIcon>
 
                 <ListItemText primary="Dashboard" />
@@ -145,7 +145,7 @@ const DialogDemo = () => {
         <Link to="/app/dialogDemo" color="inherit">
             <ListItem button >
                 <ListItemIcon>
-                    <DashboardIcon />
+                    <ChatIcon />
                 </ListItemIcon>
 
                 <ListItemText primary="Dialog" />

@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import Chart from './nivoChart/index'
+import chartData from './nivoChart/data'
 import Deposits from './Deposits';
 import Orders from './Orders';
 import { ThemeProvider } from "@material-ui/styles";
@@ -131,7 +132,7 @@ export default function Dashboard() {
                         {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
                             <Paper className={classes.paper}>
-                                <Chart />
+                                <Chart data={chartData} />
                             </Paper>
                         </Grid>
                         {/* Recent Deposits */}
