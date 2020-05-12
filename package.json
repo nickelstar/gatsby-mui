@@ -18,7 +18,7 @@
         "gatsby": "^2.18.17",
         "gatsby-image": "^2.2.7",
         "gatsby-plugin-manifest": "^2.2.4",
-        "gatsby-plugin-material-ui": "latest",
+        "gatsby-plugin-material-ui": "^2.1.8",
         "gatsby-plugin-offline": "^3.0.34",
         "gatsby-plugin-react-helmet": "^3.1.21",
         "gatsby-plugin-sharp": "^2.2.9",
@@ -27,9 +27,9 @@
         "gatsby-transformer-sharp": "^2.2.5",
         "material-table": "^1.57.2",
         "prop-types": "^15.7.2",
-        "react": "latest",
-        "react-dom": "latest",
-        "react-helmet": "latest"
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-helmet": "^6.0"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.3",
