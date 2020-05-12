@@ -55,14 +55,14 @@ export default function Dashboard() {
         }
         getData();
 
-        const subscription = API.graphql(graphqlOperation(onCreateCountryFoodSales)).subscribe({
-            next: (eventData) => {
-                const countryFoodSales = eventData.value.data.onCreateCountryFoodSales;
-                dispatch({ type: SUBSCRIPTION, talker: countryFoodSales });
-            }
-        });
+        // const subscription = API.graphql(graphqlOperation(onCreateCountryFoodSales)).subscribe({
+        //     next: (eventData) => {
+        //         const countryFoodSales = eventData.value.data.onCreateCountryFoodSales;
+        //         dispatch({ type: SUBSCRIPTION, talker: countryFoodSales });
+        //     }
+        // });
 
-        return () => subscription.unsubscribe();
+        // return () => subscription.unsubscribe();
     }, []);
 
 
