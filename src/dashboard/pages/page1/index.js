@@ -20,22 +20,52 @@ import Layout from '../../components/Layout'
 import SEO from '../../../components/seo'
 
 import { listCountryFoodSaless } from '../../../graphql/queries';
-import { onCreateCountryFoodSales } from '../../../graphql/subscriptions';
-
+// import { onCreateCountryFoodSales } from '../../../graphql/subscriptions';
+import {
+    onCreateCountryFoodSales,
+    onUpdateCountryFoodSales,
+    // onDeleteCountryFoodSales
+} from '../../../graphql/subscriptions';
 // Action Types
 const QUERY = 'QUERY';
-const SUBSCRIPTION = 'SUBSCRIPTION';
+// const SUBSCRIPTION = 'SUBSCRIPTION';
+
+const CREATE_SUBSCRIPTION = 'CREATE_SUBSCRIPTION';
+const UPDATE_SUBSCRIPTION = 'UPDATE_SUBSCRIPTION';
+const DELETE_SUBSCRIPTION = 'DELETE_SUBSCRIPTION';
 
 const initialState = {
     countryFoodSaless: [],
 };
 
+const updateObjectInArray = (array, replacementObject) => {
+    return array.map((item, index) => {
+        if (item.id !== replacementObject.id) {
+            // This isn't the item we care about - keep it as-is
+            return item
+        }
+        // Otherwise, this is the one we want - return an updated value
+        return {
+            ...item,
+            ...replacementObject
+        }
+    })
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case QUERY:
             return { ...state, countryFoodSaless: action.countryFoodSaless };
-        case SUBSCRIPTION:
+        // case SUBSCRIPTION:
+        //     return { ...state, countryFoodSaless: [...state.countryFoodSaless, action.countryFoodSales] }
+        // case CREATE:
+        case CREATE_SUBSCRIPTION:
             return { ...state, countryFoodSaless: [...state.countryFoodSaless, action.countryFoodSales] }
+        // case UPDATE:
+        case UPDATE_SUBSCRIPTION:
+            return {
+                ...state, countryFoodSaless: updateObjectInArray(state.countryFoodSaless, action.countryFoodSales)
+            }
         default:
             return state;
     }
@@ -54,14 +84,31 @@ export default function Dashboard() {
         }
         getData();
 
-        const subscription = API.graphql(graphqlOperation(onCreateCountryFoodSales)).subscribe({
+        // const subscription = API.graphql(graphqlOperation(onCreateCountryFoodSales)).subscribe({
+        //     next: (eventData) => {
+        //         const countryFoodSales = eventData.value.data.onCreateCountryFoodSales;
+        //         dispatch({ type: SUBSCRIPTION, talker: countryFoodSales });
+        //     }
+        // });
+        const onCreateSubscription = API.graphql(graphqlOperation(onCreateCountryFoodSales)).subscribe({
             next: (eventData) => {
                 const countryFoodSales = eventData.value.data.onCreateCountryFoodSales;
-                dispatch({ type: SUBSCRIPTION, talker: countryFoodSales });
+                dispatch({ type: CREATE_SUBSCRIPTION, countryFoodSales });
             }
         });
 
-        return () => subscription.unsubscribe();
+        const onUpdateSubscription = API.graphql(graphqlOperation(onUpdateCountryFoodSales)).subscribe({
+            next: (eventData) => {
+                const countryFoodSales = eventData.value.data.onUpdateCountryFoodSales;
+                dispatch({ type: UPDATE_SUBSCRIPTION, countryFoodSales });
+            }
+        });
+
+        return () => {
+            onCreateSubscription.unsubscribe();
+            onUpdateSubscription.unsubscribe();
+            // onDeleteSubscription.unsubscribe();
+        }
     }, []);
 
 
