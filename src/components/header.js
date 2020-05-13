@@ -40,7 +40,7 @@ const Header = ({ siteTitle }) => {
                     </Link>
                 </h1>
 
-                {state.theme}
+                {/* {state.theme}
                 <button
                     type="button"
                     onClick={() => {
@@ -48,7 +48,7 @@ const Header = ({ siteTitle }) => {
                     }}
                 >
                     Toggle Theme
-                </button>
+                </button> */}
 
                 <LoginAndOut />
             </div>
@@ -68,7 +68,14 @@ const LoginAndOut = () => {
         >Sign Out</p>
     }
 
-    return <Link to="/app/login" style={styles.link}>Sign In</Link>;
+    return (
+        <>
+            <p>
+                <Link to="/app/login" style={styles.link}>Sign In</Link>
+                | <Link to="/app/signup" style={styles.link}>Sign Up</Link>
+            </p>
+        </>
+    );
 
 }
 

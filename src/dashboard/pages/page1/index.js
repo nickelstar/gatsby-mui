@@ -22,7 +22,6 @@ import SEO from '../../../components/seo'
 import { listCountryFoodSaless } from '../../../graphql/queries';
 import { onCreateCountryFoodSales } from '../../../graphql/subscriptions';
 
-
 // Action Types
 const QUERY = 'QUERY';
 const SUBSCRIPTION = 'SUBSCRIPTION';

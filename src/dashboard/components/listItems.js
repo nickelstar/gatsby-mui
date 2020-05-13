@@ -28,38 +28,27 @@ export const MainListItems = () => {
 
             <Dashboard />
 
+            <OrderEntry />
+
             <DialogDemo />
 
-            {/* <ListItem button>
-                <ListItemIcon>
-                    <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-            </ListItem> */}
-
-            <ListItem button>
-                <ListItemIcon>
-                    <ShoppingCartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Orders" />
-            </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Customers" />
+                <ListItemText primary=".Customers" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
-                <ListItemText primary="Reports" />
+                <ListItemText primary=".Reports" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <LayersIcon />
                 </ListItemIcon>
-                <ListItemText primary="Integrations" />
+                <ListItemText primary=".Integrations" />
             </ListItem>
         </div >
     )
@@ -75,19 +64,19 @@ export const SecondaryListItems = () => {
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Current month" />
+                <ListItemText primary=".Current month" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Last quarter" />
+                <ListItemText primary=".Last quarter" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Year-end sale" />
+                <ListItemText primary=".Year-end sale" />
             </ListItem>
         </div >
     )
@@ -149,6 +138,19 @@ const DialogDemo = () => {
                 </ListItemIcon>
 
                 <ListItemText primary="Dialog" />
+            </ListItem>
+        </Link>
+    )
+}
+
+const OrderEntry = () => {
+    return (
+        <Link to="/app/orderEntry" color="inherit">
+            <ListItem button>
+                <ListItemIcon>
+                    <ShoppingCartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Orders" />
             </ListItem>
         </Link>
     )
