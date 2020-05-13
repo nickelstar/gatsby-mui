@@ -6,9 +6,9 @@ import Auth from '@aws-amplify/auth'
 import { setUser } from '../../src/utils/auth'
 import GlobalContextProvider from "../../src/context/GlobalContextProvider"
 
-import Amplify from 'aws-amplify'
-import config from '../../src/aws-exports'
-Amplify.configure(config)
+// import Amplify from 'aws-amplify'
+// import config from '../../src/aws-exports'
+// Amplify.configure(config)
 
 export const wrapRootElement = ({ element }) => {
     return <TopLayout>

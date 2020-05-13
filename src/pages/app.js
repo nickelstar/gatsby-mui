@@ -9,16 +9,21 @@ import Details from "../components/Details"
 import SignUp from "../components/SignUp"
 import Talkers from "../components/Talkers"
 
+import Amplify from 'aws-amplify'
+import config from '../aws-exports'
 
-const App = () => (
-    <Router>
-        <PrivateRoute path="/app/home" component={DashboardPage1} />
-        <PrivateRoute path="/app/dialogDemo" component={DialogDemo} />
-        <PrivateRoute path="/app/profile" component={Details} />
-        <PrivateRoute path="/app/talkers" component={Talkers} />
-        <Login path="/app/login" />
-        <SignUp path="/app/signup" />
-    </Router>
-)
+const App = () => {
+    Amplify.configure(config)
+    return (
+        <Router>
+            <PrivateRoute path="/app/home" component={DashboardPage1} />
+            <PrivateRoute path="/app/dialogDemo" component={DialogDemo} />
+            <PrivateRoute path="/app/profile" component={Details} />
+            <PrivateRoute path="/app/talkers" component={Talkers} />
+            <Login path="/app/login" />
+            <SignUp path="/app/signup" />
+        </Router>
+    )
+}
 
 export default App
